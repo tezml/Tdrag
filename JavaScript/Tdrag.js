@@ -37,12 +37,6 @@
             } else {
                 dragfn.options = call;
             }
-           /* console.log("默认");
-            console.log(call);
-            console.log("options");
-            console.log(opt);
-            console.log("实际用的");
-            console.log(dragfn.options);*/
             dragfn.firstRandom=true;
             var ele = dragfn.$element;
             dragfn.pack(ele,false);
@@ -75,6 +69,7 @@
                 self.disY = 0;
                 self.zIndex=1000;
                 self.moving=false;
+                self.moves="";
 
 
                 //父级
@@ -155,6 +150,7 @@
             },
             start: function (ev, obj) {
                 var self = this;
+                self.moved=obj;
                 if (self.disable == true) {
                     return false
                 }
@@ -168,6 +164,9 @@
             move: function (ev, obj) {
                 var self = this;
                 if (self._start != true) {
+                    return false
+                }
+                if(obj!=self.moved){
                     return false
                 }
                 self._move = true;
